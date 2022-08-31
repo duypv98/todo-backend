@@ -1,0 +1,18 @@
+{
+  "name": "todo-app-apis",
+  "version": "1.0.0",
+  "description": "TODO App APIs",
+  "main": "index.js",
+  "author": "duypv98@gmail.com",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "fs": "^0.0.1-security",
+    "simple-json-db": "^2.0.0"
+  }
+}
