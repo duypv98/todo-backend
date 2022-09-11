@@ -7,7 +7,8 @@ const router = express.Router();
 router.route("/todos")
   .get(asyncHandler(async (req, res) => {
     const piority = req.query.piority;
-    const data = todosService.getList({ piority });
+    const priorityArr = priority.split(",");
+    const data = todosService.getList({ piority: priorityArr });
     return res.json(data);
   }))
   .post(asyncHandler(async (req, res) => {

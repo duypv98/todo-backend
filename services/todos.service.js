@@ -2,9 +2,9 @@ const db = require("../db");
 
 const todosService = {
   /**
-   * 
+   * @typedef {"low" | "medium" | "high"} Priority
    * @param {{
-   *  piority?: "low" | "medium" | "high"
+   *  piority?: Priority | Array<Priority>
    * }} args
    */
   getList: (args) => {
@@ -13,8 +13,14 @@ const todosService = {
       id,
       ...list[id]
     }));
-    if (["low", "medium", "high"].includes(args.piority)) {
-      data = [...data].filter((value) => value.piority === args.piority);
+    /**
+     * @type {Priority[]}
+     */
+    const priorityArr =
+      (typeof args.piority !== "undefined" ? (Array.isArray(args.piority) ? (args.piority || []) : [args.piority]) : [])
+        .map((e) => e.toLowerCase());
+    if (priorityArr.every((priority) => ["low", "medium", "high"].includes(priority.toLowerCase()))) {
+      data = [...data].filter((value) => priorityArr.includes(value.piority.toLowerCase()));
     }
     return data;
   },
